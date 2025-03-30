@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+    <style>
+        h1.t1 {
+            font-family: "Monaco", monospace;
+            font-size: 40px;
+            color: #311a4d;
+        }
+        h2.t1 {
+            font-family: "Monaco", monospace;
+            color: #311a4d;
+        }
+        p.t2 {
+            font-family: "Monaco", monospace;
+            color: #311a4d;
+        }
+        p.t3{
+            font-family: "Monaco", monospace;
+            color: white;
+        }
+        .column {
+            float: left;
+        }
+        .left {
+            width: 40%;
+        }
+        .right {
+            width: 60%;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        .box {
+            margin: 20px;
+            padding-left: 5px;
+            width: 500px;
+            height: 550px;
+            border: 2px solid black;
+        }
+        .box2 {
+            margin-top: 20px;
+            padding-left: 10px;
+            width: 480px;
+            height: 110px;
+        }
+        .purple {
+            background: #311a4d;
+        }
+        .white{
+            background:white;
+        }
+        /* container */
+        .container {
+            padding: 5% 5%;
+        }
+        /* CSS talk bubble */
+        .talk-bubble {
+            margin: 20px;
+            display: inline-block;
+            position: relative;
+            width: 20;
+            height: 40;
+            background-color: lightyellow;
+        }
+        .border{
+            border: 6px solid #311a4d;
+        }
+        .round{
+            border-radius: 30px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+        }
+        /*Right triangle, placed bottom left side slightly in*/
+        .tri-right.border.btm-left-in:before {
+            content: ' ';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 30px;
+            right: auto;
+            top: auto;
+            bottom: -40px;
+            border: 20px solid;
+            border-color: #311a4d transparent transparent #311a4d;
+        }
+        /* talk bubble contents */
+        .talktext{
+            padding: 1em;
+            text-align: left;
+            line-height: 1.5em;
+        }
+        .talktext p{
+            /* remove webkit p margins */
+            -webkit-margin-before: 0em;
+            -webkit-margin-after: 0em;
+        }
+    </style>
+</head>
+
+<body style="background-color:#d2cfcd;">
+
+    <h1 class="t1">Emmitt, transit creature</h1>
+    <p class="t2">From a planet different from ours, Emmitt was created for the purpose of calculating your carbon footprint and helping you make sustainable choices...ask away</p>
+
+    <div class="row">
+        <div class="column left">
+            <div class="box purple">
+
+                <p class="t3"> From:
+                    <input list="locations" id="end-location" name="end-location" placeholder="Destination">
+                    <datalist id="locations">
+                        <option value="Amherst, MA">
+                        <option value="Northampton, MA">
+                        <option value="Springfield, MA">
+                        <option value="Boston, MA">
+                    </datalist>
+                </p>
+
+                <p class="t3"> To:
+                    <input list="locations" id="start-location" name="start-location" placeholder="Starting location">
+                    <datalist id="locations">
+                        <option value="Amherst, MA">
+                        <option value="Northampton, MA">
+                        <option value="Springfield, MA">
+                        <option value="Boston, MA">
+                    </datalist>
+                </p>
+               
+
+                <p class="t3" id="distance-display">Distance: </p> <!-- New line to show distance -->
+
+
+                <div class="box2 white">
+                    <p class="t2">Method: Biking/Walking</p>
+                    <p class="t2" id="biking-carbon">Total carbon emission: None</p>
+                    <p class="t2" id="biking-tree-offset">Most sustainable transportation method!</p>
+                </div>
+
+                <div class="box2 white">
+                    <p class="t2">Method: Bus</p>
+                    <p class="t2" id="bus-carbon">Total carbon emission:</p>
+                    <p class="t2" id="bus-tree-offset">Equivalent to a tree taking ____ months to offset the CO2</p>
+                </div>
+                
+                <div class="box2 white">
+                    <p class="t2">Method: Car</p>
+                    <p class="t2" id="car-carbon">Total carbon emission:</p>
+                    <p class="t2" id="car-tree-offset">Equivalent to a tree taking ____ months to offset the CO2</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column right">
+            <div class="talk-bubble tri-right border round btm-left-in">
+                <div class="talktext">
+                    <p>You can ask me questions!</p>
+                </div>
+            </div>
+            <br>
+            <img src="Emmitt.png" width="100" height=100 >
+            <iframe src="https://hthcb-sherlyns-sherlyns-projects-c4c041d1.vercel.app/" height="300" width="800"></iframe>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/map.js"></script>
+    <script src="js/main.js"></script> <!-- Your updated JS file -->
+
+    <script>
+        const distances = {
+            "Amherst, MA": {
+                "Northampton, MA": 8,    // Amherst to Northampton = 8 miles
+                "Springfield, MA": 27,   // Amherst to Springfield = 27 miles
+                "Boston, MA": 92         // Amherst to Boston = 92 miles
+            },
+            "Northampton, MA": {
+                "Amherst, MA": 8,        // Northampton to Amherst = 8 miles
+                "Springfield, MA": 20,   // Northampton to Springfield = 20 miles
+                "Boston, MA": 104        // Northampton to Boston = 104 miles
+            },
+            "Springfield, MA": {
+                "Amherst, MA": 27,       // Springfield to Amherst = 27 miles
+                "Northampton, MA": 20,   // Springfield to Northampton = 20 miles
+                "Boston, MA": 98         // Springfield to Boston = 98 miles
+            },
+            "Boston, MA": {
+                "Amherst, MA": 92,       // Boston to Amherst = 92 miles
+                "Northampton, MA": 104,  // Boston to Northampton = 104 miles
+                "Springfield, MA": 98    // Boston to Springfield = 98 miles
+            }
+         };
+
+         function updateEmissions() {
+            const startLocation = document.getElementById('start-location').value;
+            const endLocation = document.getElementById('end-location').value;
+            const distanceDisplay = document.getElementById('distance-display');
+
+            if (startLocation && endLocation && distances[startLocation] && distances[startLocation][endLocation]) {
+                // Get the manually set distance between the selected locations
+                const distance = distances[startLocation][endLocation];  // Use distance directly here
+
+                distanceDisplay.textContent = `Distance: ${distance} miles`;
+
+                // Emission rates in lbs per passenger mile
+                const busEmissionPerMile = 0.64;  // Bus: 0.64 lbs per passenger mile
+                const carEmissionPerMile = 0.96;  // Car: 0.96 lbs per passenger mile
+
+                // Convert lbs to grams (1 lb = 453.592 grams)
+                const lbsToGrams = 453.592;
+                const busEmissionInGrams = busEmissionPerMile * lbsToGrams;  // Convert bus emission to grams
+                const carEmissionInGrams = carEmissionPerMile * lbsToGrams;  // Convert car emission to grams
+
+                // Calculate total emissions for each method of transportation (grams)
+                const busTotalEmission = busEmissionInGrams * distance; // Total CO2 for the bus trip in grams
+                const carTotalEmission = carEmissionInGrams * distance; // Total CO2 for the car trip in grams
+
+                // 1 tree can absorb around 58 lbs of CO2 per year
+                const treeCO2AbsorptionPerYear = 48 * lbsToGrams; // 48 lbs to grams = 21,772.416 grams per year
+                const busTreeOffset = busTotalEmission / treeCO2AbsorptionPerYear; // Years for tree to offset CO2
+                const carTreeOffset = carTotalEmission / treeCO2AbsorptionPerYear; // Years for tree to offset CO2
+
+                        // Convert years to months (1 year = 12 months)
+                const busTreeOffsetInMonths = busTreeOffset * 12;
+                const carTreeOffsetInMonths = carTreeOffset * 12;
+
+                // Update the bus carbon emission and tree offset display
+                document.getElementById('bus-carbon').textContent = `Total carbon emission: ${busTotalEmission.toFixed(2)} grams`;
+                document.getElementById('bus-tree-offset').textContent = `Equivalent to a tree taking ${busTreeOffsetInMonths.toFixed(2)} months to offset the CO2`;
+
+                // Update the car carbon emission and tree offset display
+                document.getElementById('car-carbon').textContent = `Total carbon emission: ${carTotalEmission.toFixed(2)} grams`;
+                document.getElementById('car-tree-offset').textContent = `Equivalent to a tree taking ${carTreeOffsetInMonths.toFixed(2)} months to offset the CO2`;
+            } else {
+                // Handle the case where there is no valid distance (e.g., same location selected or invalid data)
+                document.getElementById('bus-carbon').textContent = "Total carbon emission:";
+                document.getElementById('bus-tree-offset').textContent = "Equivalent to a tree taking ____ months to offset the CO2";
+                document.getElementById('car-carbon').textContent = "Total carbon emission:";
+                document.getElementById('car-tree-offset').textContent = "Equivalent to a tree taking ____ months to offset the CO2";
+            }
+        }
+
+        // Event listeners for when the locations are changed
+        document.getElementById('start-location').addEventListener('change', updateEmissions);
+        document.getElementById('end-location').addEventListener('change', updateEmissions);
+    </script>
+</body>
+</html>
